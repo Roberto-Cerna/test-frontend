@@ -1,0 +1,40 @@
+@media all and (min-width: 1024px) {
+    .dialog{
+        height: 672px;
+        width: 1064px;
+    }
+    .company{
+        margin-top: 40px;
+    }
+}
+@media only screen and (max-width: 600px) {
+    .dialog{
+        height: auto;
+        width: 98%;
+    }
+}
+.title{
+    //width: 448px;
+    height: 24px;
+    /* UI Properties */
+    text-align: center;
+    //font: normal normal normal 24px/24px Rubik;
+    letter-spacing: 0.18px;
+    color: #000000DE;
+    opacity: 1;
+    font-weight: bold;
+}
+.subtitle{
+    font: normal normal normal 12px/16px Rubik;
+    letter-spacing: 0.4px;
+    color: #000000DE;
+    opacity: 1;
+    text-align: center;
+}
+.detalle{
+    text-align: justify;
+    font: normal normal normal 14px/20px Rubik;
+    letter-spacing: 0.25px;
+    color: #000000DE;
+    margin-top: 40px;
+}

@@ -1,0 +1,35 @@
+.icono-aprobado{
+    margin-top: 94px;
+    margin-bottom: 26px;
+}
+.boton-cerrar{
+    width: 125px;
+    height: 56px;
+    border-radius: 8px 0px 8px 0px;
+}
+.texto{
+    text-align: center;
+    //font: normal normal normal 16px/24px Rubik;
+    font-size: 15px;
+    letter-spacing: 0.5px;
+    color: #000000DE;
+    opacity: 1;
+    margin-right: 8%;
+    margin-left: 8%;
+    font-weight: 600;
+    margin-bottom: 48px;
+}
+@media all and (min-width: 1024px) {
+    .dialog{
+        height: 528px;
+        width: 1064px;
+        border-radius: 15px 0px 15px 0px;
+    }
+}
+@media only screen and (max-width: 600px) {
+    .dialog{
+        height: auto;
+        width: 98%;
+        border-radius: 15px 0px 15px 0px;
+    }
+}

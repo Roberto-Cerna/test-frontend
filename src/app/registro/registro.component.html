@@ -1,0 +1,223 @@
+<div fxLayout="row" fxLayout.xs="column" style="margin-top: 48px;">
+    <div fxFlex="30">
+    </div>
+    <div fxFlex="40">
+        <h1 class="title">LIBRO DE RECLAMACIONES</h1>
+        <div style="margin-top: 24px;" fxLayout="column" fxLayoutAlign="center center">
+            <span class="subtitle">CBC LOGISTICS S.A.C.</span>
+            <span class="subtitle">R.U.C. No. 20601373875</span>
+            <span class="subtitle">AV. VÍCTOR ANDRÉS BELAUNDE NO. 332, INTERIOR 201, URBANIZACIÓN</span>
+            <span class="subtitle">ORRANTIA (INTERIOR 2, PISO 2), SAN ISIDRO, LIMA – PERÚ</span>
+        </div>
+    </div>
+    <div fxFlex="30" fxLayoutAlign="end none" style="margin-right: 110px;">
+        <img src="../../assets/logoVah.png">
+    </div>
+</div>
+<div class="form">
+    <div style="margin-top: 35px;margin-left: 29px;">
+        <div fxLayout="column">
+            <h2 class="h2-text">Hoja de reclamaci&oacute;n N°: (Se asignará luego de enviar la reclamación)</h2>
+            <h3>Fecha : {{now | date: 'dd/MM/yyyy, HH:mm'}}</h3>
+            <h3>Establecimiento: Portal Web VAH</h3>
+        </div>
+        <mat-stepper mat-vertical-stepper-scroller orientation="vertical" linear="true" #stepper (selectionChange)="onStepChange($event)">
+            <mat-step [stepControl]="datosPersonaFormGroup">
+                <form [formGroup]="datosPersonaFormGroup" class="step-form">
+                    <ng-template matStepLabel class="stepperTop0">Datos de la persona que presenta el reclamo</ng-template>
+                    <mat-form-field appearance="standard" class="form-field">
+                        <mat-label>Tipo de Documento de Identidad</mat-label>
+                        <mat-select required formControlName="docType">
+                            <mat-option *ngFor="let document of documentTypes" [value]="document">
+                                {{document}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field appearance="standard" class="form-field">
+                        <mat-label>N&uacute;mero de Documento</mat-label>
+                        <input matInput placeholder="N&uacute;mero de Documento" formControlName="docNumber" required>
+                    </mat-form-field>
+                    <mat-form-field appearance="standard" class="form-field">
+                        <mat-label>Nombres</mat-label>
+                        <input matInput placeholder="Nombres" formControlName="name" required>
+                    </mat-form-field>
+                    <mat-form-field appearance="standard" class="form-field">
+                        <mat-label>Apellidos</mat-label>
+                        <input matInput placeholder="Apellidos" formControlName="lastname" required>
+                    </mat-form-field>
+                    <mat-form-field appearance="standard" class="form-field">
+                        <mat-label>Medio a trav&eacute;s del cual desea recibir la respuesta</mat-label>
+                        <mat-select required formControlName="channel">
+                            <mat-option *ngFor="let channel of channels" [value]="channel">
+                                {{channel}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field appearance="standard" class="form-field">
+                        <mat-label>Direcci&oacute;n domiciliaria</mat-label>
+                        <input matInput placeholder="Direcci&oacute;n domiciliaria" formControlName="address" required>
+                        <mat-hint>Avenida / Calle /Jir&oacute;n / Pasaje / AAHH, Distrito, Provincia</mat-hint>
+                    </mat-form-field>
+                    <mat-form-field appearance="standard" class="form-field">
+                        <mat-label>Departamento</mat-label>
+                        <mat-select required formControlName="department" (selectionChange)="onChangeDepartment($event.value)">
+                            <mat-option *ngFor="let department of departments" [value]="department">
+                                {{department.nombre}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field appearance="standard" class="form-field" >
+                        <mat-label>Provincia</mat-label>
+                        <mat-select required formControlName="province" (selectionChange)="onChangeProvince($event.value)">
+                            <mat-option *ngFor="let province of provinces" [value]="province">
+                                {{province.nombre}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field appearance="standard" class="form-field">
+                        <mat-label>Distrito</mat-label>
+                        <mat-select required formControlName="district">
+                            <mat-option *ngFor="let district of districts" [value]="district">
+                                {{district.nombre}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field appearance="standard" class="form-field">
+                        <mat-label>Correo El&eacute;ctronico</mat-label>
+                        <input matInput type="email" placeholder="Correo El&eacute;ctronico" formControlName="email">
+                    </mat-form-field>
+                    <mat-form-field appearance="standard" class="form-field">
+                        <mat-label>Tel&eacute;fono</mat-label>
+                        <input matInput type="phone" placeholder="Tel&eacute;fono" formControlName="phone">
+                    </mat-form-field>
+                    <div class="header-apoderado" fxLayoutAlign="none center">
+                        <span class="header-apoderado-text">Datos de apoderado</span>
+                    </div>
+                    <div>
+                        <mat-checkbox color="accent" class="checkbox-apoderado" formControlName="apoderado">
+                            Marca la casilla en caso el consumidor sea menor de edad para consignar los datos del apoderado.
+                        </mat-checkbox>
+                    </div>
+                    <div *ngIf="datosPersonaFormGroup.value.apoderado">
+                        <mat-form-field appearance="standard" class="form-field">
+                            <mat-label>Tipo de Documento de Identidad</mat-label>
+                            <mat-select formControlName="docTypeApoderado" required>
+                                <mat-option *ngFor="let document of documentTypes" [value]="document">
+                                    {{document}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <mat-form-field appearance="standard" class="form-field">
+                            <mat-label>N&uacute;mero de Documento</mat-label>
+                            <input matInput placeholder="N&uacute;mero de Documento" formControlName="docNumberApoderado" required>
+                        </mat-form-field>
+                        <mat-form-field appearance="standard" class="form-field">
+                            <mat-label>Nombres</mat-label>
+                            <input matInput placeholder="Nombres" formControlName="nameApoderado" required>
+                        </mat-form-field>
+                        <mat-form-field appearance="standard" class="form-field">
+                            <mat-label>Apellidos</mat-label>
+                            <input matInput placeholder="Apellidos" formControlName="lastnameApoderado" required>
+                        </mat-form-field>
+                    </div>
+                    <br>
+                    <div fxLayoutAlign="center center">
+                        <button mat-mini-fab matStepperNext color="white" (click)="secondStep()" class="mat-elevation-z0">
+                            <mat-icon class="next-button">arrow_circle_down</mat-icon>
+                        </button>
+                    </div>
+                </form>
+            </mat-step>
+            <mat-step [stepControl]="bienContratadoFormGroup">
+                <form [formGroup]="bienContratadoFormGroup" class="step-form">
+                    <ng-template matStepLabel><span id="step2">Identificaci&oacute;n del bien contratado</span></ng-template>
+                    <div style="width: 100%;margin-top: 51px;">
+                        <mat-radio-group color="primary" class="form-field"  formControlName="type" labelPosition="before">
+                            <mat-radio-button value="Producto">Producto</mat-radio-button>
+                            <mat-radio-button value="Servicio" class="second-radiobutton">Servicio</mat-radio-button>
+                        </mat-radio-group>
+                    </div>
+                    <mat-form-field appearance="standard" class="form-field" style="margin-top: 26px;">
+                        <mat-label>Monto reclamado S/</mat-label>
+                        <input matInput formControlName="amount" type="number" placeholder="Monto reclamado S/" required>
+                    </mat-form-field>
+                    <mat-form-field appearance="standard" class="form-field">
+                        <mat-label>Marca</mat-label>
+                        <input matInput formControlName="brand" placeholder="Marca" required>
+                    </mat-form-field>
+                    <mat-form-field appearance="standard" class="form-field">
+                        <mat-label>Descripci&oacute;n del producto o servicio</mat-label>
+                        <textarea rows="2" matInput formControlName="description" placeholder="Descripci&oacute;n del producto o servicio" maxlength="2000"></textarea>
+                        <mat-hint align="end">{{bienContratadoFormGroup.value.description?bienContratadoFormGroup.value.description.length:0}} / 2000</mat-hint>
+                    </mat-form-field>
+                    <div fxLayoutAlign="center center">
+                        <button mat-mini-fab matStepperNext color="white" (click)="thirdStep()" class="mat-elevation-z0">
+                            <mat-icon class="next-button">arrow_circle_down</mat-icon>
+                        </button>
+                    </div>
+                </form>
+            </mat-step>
+            <mat-step [stepControl]="detalleReclamacionFormGroup">
+                <form [formGroup]="detalleReclamacionFormGroup" (ngSubmit) = "save()" class="step-form">
+                    <ng-template matStepLabel><span id="step3">Detalle de la reclamaci&oacute;n y pedido del consumidor</span></ng-template>
+                    <div style="width: 100%;margin-top: 51px;">
+                        <mat-radio-group color="primary" class="form-field"  formControlName="claimType" labelPosition="before">
+                            <mat-radio-button value="Reclamo">Reclamo</mat-radio-button>
+                            <mat-radio-button value="Queja" class="second-radiobutton">Queja</mat-radio-button>
+                        </mat-radio-group>
+                    </div>
+                    <div class="dictionary" fxLayout="column">
+                        <span style="margin-top:23px;" class="dictionary_text">RECLAMO: Disconformidad relacionada a los productos o servicios.</span>
+                        <span class="dictionary_text">QUEJA: Disconformidad no relacionada a los productos o servicios o malestar o descontento respecto a la atención al público.</span>
+                        <span class="dictionary_text">La formulación del reclamo no impide acudir a otras vías de solución de controversias ni es requisito previo para interponer una denuncia ante el INDECOPI.</span>
+                        <span style="margin-bottom:13px;" class="dictionary_text">El proveedor deberá dar respuesta al reclamo en un plazo no mayor de quince (15) días hábiles improrrogables.</span>
+                    </div>
+                    <mat-form-field appearance="standard" class="form-field" style="margin-top: 16px;">
+                        <mat-label>Detalle del reclamo</mat-label>
+                        <textarea rows="2" matInput formControlName="claimDetail" placeholder="Detalle del reclamo" maxlength="2000"></textarea>
+                        <mat-hint align="end">{{detalleReclamacionFormGroup.value.claimDetail?detalleReclamacionFormGroup.value.claimDetail.length:0}} / 2000</mat-hint>
+                    </mat-form-field>
+                    <mat-form-field appearance="standard" class="form-field">
+                        <mat-label>Pedido del consumidor</mat-label>
+                        <textarea rows="2" matInput formControlName="claimOrder" placeholder="Pedido del consumidor" maxlength="2000"></textarea>
+                        <mat-hint align="end">{{detalleReclamacionFormGroup.value.claimOrder?detalleReclamacionFormGroup.value.claimOrder.length:0}} / 2000</mat-hint>
+                    </mat-form-field>
+                    <div class="form-field" fxLayout="column" style="margin-top: 75.44px;">
+                        <span>Opcional: adjuntar documentación adicional.</span>
+                        <span>Puede subir más de un archivo.</span>
+                        <span>Máximo 15MB por archivo.</span>
+                        <span>Formatos permitidos: pdf, jpg, mp4, mp3.</span>
+                    </div>
+                    <div fxLayout="column" style="margin-top: 26px;margin-bottom: 28px;">
+                        <button type="button" mat-stroked-button style="width: 250px;border-radius: 15px 0px 15px 0px;" (click)="imgFileInput.click()"><mat-icon>attach_file</mat-icon>ADJUNTAR DOCUMENTO</button>
+                        <input hidden type="file" #imgFileInput (change)="addFile($event)" accept="application/pdf,image/*,audio/*,video/*"/>
+                    </div>
+                    <div fxLayout="row" fxLayoutGap="20px" *ngFor="let file of files;let sequence=index" fxLayoutAlign="none center">
+                        <br>
+                        <a class="filename">{{(file.name.length>40)? (file.name | slice:0:40)+'..':(file.name)}}</a>
+                        <button mat-icon-button (click)="deleteFile(file,sequence)">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                    </div>
+                    <div style="margin-top:96px;" fxLayoutAlign="end none">
+                        <button [disabled] ="!detalleReclamacionFormGroup.valid" mat-raised-button type="submit" color="primary" style="margin-right: 56px;">Enviar</button>
+                    </div>
+                </form>
+            </mat-step>
+        </mat-stepper>
+        <br>
+    </div>
+</div>
+<div fxLayoutAlign="center center" fxLayout="column">
+    <img style="margin-top: 31.5px;" src="../../assets/Icon awesome-whatsapp.svg">
+    <span style="margin-top: 21.1px;" class="phone-text">Atención por WhatsApp:</span>
+    <span class="phone-text">Lunes a viernes de 07:00 a 20:15 horas.</span>
+    <span class="phone-text">Sábado de 07:00 a 19:15 horas.</span>
+    <span class="phone-text">+51 998 633 524</span>
+</div>
+<div fxLayoutAlign="center center" fxLayout="column" style="margin-top: 15px;">
+    <span class="terminos" (click)="openTerminosDialog()">T&eacute;rminos y Condiciones</span>
+    <span class="terminos" (click)="openPoliticaDialog()">Pol&iacute;tica de Privacidad</span>
+    <img class="logo-libro" src="assets/libroreclamaciones.png">
+</div>
+<div style="height: 50px;"></div>

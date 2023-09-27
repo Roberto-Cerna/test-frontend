@@ -1,0 +1,16 @@
+<h2 mat-dialog-title></h2>
+<mat-dialog-content class="mat-typography dialog">
+    <div>
+        <div fxLayout="column" fxLayoutAlign="center center" class="icono-aprobado">
+            <img src="../../assets/iconoAprobado.svg">
+        </div>
+    </div>
+    <span class="texto" fxLayoutAlign="center center">
+        La reclamación {{reclamo.correlativo}} ha sido respondida con éxito. Se envió la respuesta al correo electrónico: {{reclamo.email}}.
+    </span>
+    <div fxLayout="column" fxLayoutAlign="center center" class="detalle" fxLayoutGap="25px">
+        <button type="button"  mat-flat-button color="primary" class="boton-cerrar" mat-dialog-close>Cerrar</button>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+</mat-dialog-actions>

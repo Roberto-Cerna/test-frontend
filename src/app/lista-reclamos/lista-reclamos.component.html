@@ -1,0 +1,62 @@
+<div fxLayout="row" fxLayout.xs="column" class="header">
+    <div fxFlex="30">
+    </div>
+    <div fxFlex="40">
+        <h1 class="title">LIBRO DE RECLAMACIONES</h1>
+        <div style="margin-top: 24px;" fxLayout="column" fxLayoutAlign="center center">
+            <span class="subtitle">CBC LOGISTICS S.A.C.</span> 
+            <span class="subtitle">R.U.C. No. 20601373875</span>
+            <span class="subtitle">AV. VÍCTOR ANDRÉS BELAUNDE NO. 332, INTERIOR 201, URBANIZACIÓN</span> 
+            <span class="subtitle">ORRANTIA (INTERIOR 2, PISO 2), SAN ISIDRO, LIMA – PERÚ</span>
+        </div>
+    </div>
+    <div fxFlex="30" fxLayoutAlign="end none" style="margin-right: 150px;">
+        <!--<img src="../../assets/logoVah.png">-->
+    </div>
+</div>
+<div>
+    <div class="contenedor-reclamos">
+        <div style="margin-top: 48px;margin-left: 42px;">
+          <span class="description">Libro de reclamaciones</span>
+        </div>
+        <mat-tab-group mat-align-tabs="center" animationDuration="2000ms" class="tabs" (selectedTabChange)="onTabChanged($event)">
+            <mat-tab label="Pendientes"></mat-tab>
+            <mat-tab label="Atendidos"></mat-tab>
+        </mat-tab-group>
+        <app-filter fxFill  [options]="options" (onChange)="onChange($event)"></app-filter>
+        <mat-progress-bar *ngIf="dataSource.loadingSubject  | async" mode="indeterminate" class="progress-bar"></mat-progress-bar>
+        <table mat-table [dataSource]="dataSource">
+            <!-- Position Column -->
+            <ng-container matColumnDef="id">
+              <th mat-header-cell *matHeaderCellDef> Id </th>
+              <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+            </ng-container>
+            <!-- Name Column -->
+            <ng-container matColumnDef="numdoc">
+              <th mat-header-cell *matHeaderCellDef> DI </th>
+              <td mat-cell *matCellDef="let element"> {{element.numeroDoc}} </td>
+            </ng-container>
+            <!-- Weight Column -->
+            <ng-container matColumnDef="fecha">
+              <th mat-header-cell *matHeaderCellDef> Fecha </th>
+              <td mat-cell *matCellDef="let element"> {{element.fechaRegistro}} </td>
+            </ng-container>
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="action">
+              <th mat-header-cell *matHeaderCellDef> Acciones </th>
+              <td mat-cell *matCellDef="let element">
+                <button mat-icon-button matTooltip="Editar" (click)="edit(element)">
+                    <mat-icon>edit</mat-icon>
+                </button>
+              </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+          <mat-paginator [length]="dataSource.totalSubject | async" [pageSizeOptions]="[10, 20, 50]"></mat-paginator>
+          <br>
+    </div>
+</div>
+<div>
+  <br>
+</div>

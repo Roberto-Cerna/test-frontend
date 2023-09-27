@@ -1,0 +1,31 @@
+<div fxLayout="row" fxLayoutGap="40px" fxLayoutAlign="center center">
+    <mat-icon class="icon">filter_list</mat-icon>
+    <mat-form-field  class="mat-chip-list" fxFlex="90">
+        <mat-chip-list #chipList aria-label="Busqueda">
+            <mat-chip
+                *ngFor="let search of searches"
+                [selectable]="selectable"
+                [removable]="removable"
+                (click)="clicked(search)"
+                (removed)="remove(search)">
+                {{search.name}}
+            <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+        </mat-chip>
+        <input
+            placeholder="Agregar filtro"
+            #searchInput
+            (focus)="onFocus()"
+            [formControl]="searchCtrl"
+            [matAutocomplete]="auto"
+            [matChipInputFor]="chipList"
+            [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+            [matChipInputAddOnBlur]="false"
+            (matChipInputTokenEnd)="add($event)">
+        </mat-chip-list>
+        <mat-autocomplete  autoActiveFirstOption #auto="matAutocomplete" (optionSelected)="selected($event)">
+            <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                {{ option.name | titlecase}}
+            </mat-option>
+        </mat-autocomplete>
+    </mat-form-field>
+</div> 

@@ -1,0 +1,34 @@
+<div fxLayout="row" fxLayout.xs="column" class="header">
+    <div fxFlex="30">
+    </div>
+    <div fxFlex="40">
+        <h1 class="title">LIBRO DE RECLAMACIONES</h1>
+        <div style="margin-top: 24px;" fxLayout="column" fxLayoutAlign="center center">
+            <span class="subtitle">CBC LOGISTICS S.A.C.</span> 
+            <span class="subtitle">R.U.C. No. 20601373875</span>
+            <span class="subtitle">AV. VÍCTOR ANDRÉS BELAUNDE NO. 332, INTERIOR 201, URBANIZACIÓN</span> 
+            <span class="subtitle">ORRANTIA (INTERIOR 2, PISO 2), SAN ISIDRO, LIMA – PERÚ</span>
+        </div>
+    </div>
+    <div fxFlex="30" fxLayoutAlign="end none" style="margin-right: 150px;">
+        <!--<img src="../../assets/logoVah.png">-->
+    </div>
+</div>
+<div fxLayout="row" fxLayout.xs="column" class="login-screen">
+    <div fxFlex="50" fxLayoutAlign="center center">
+        <img src="../../assets/portrait-of-woman-customer-service-worker@2x.png" class="login-image">
+    </div>
+    <div fxFlex="50">
+        <form [formGroup]="loginFormGroup" (ngSubmit) = "login()" class="login-form" fxLayout="column" fxLayoutAlign="center center">
+            <mat-form-field appearance="standard" class="form-field">
+                <mat-label>Usuario</mat-label>
+                <input matInput placeholder="Usuario" formControlName="username" required>
+            </mat-form-field>
+            <mat-form-field appearance="standard" class="form-field" style="margin-top: 51px;">
+                <mat-label>Contraseña</mat-label>
+                <input type="password" matInput placeholder="Contraseña" formControlName="password" required>
+            </mat-form-field>
+            <button mat-flat-button color="primary" type="submit" class="loginButton">Ingresar</button>
+        </form>
+    </div>
+</div>

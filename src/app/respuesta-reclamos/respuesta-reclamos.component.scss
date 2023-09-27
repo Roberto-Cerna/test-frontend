@@ -1,0 +1,91 @@
+.header{
+    margin-top: 76px;
+}
+.title{
+    //width: 448px;
+    height: 24px;
+    /* UI Properties */
+    text-align: center;
+    //font: normal normal normal 24px/24px Rubik;
+    letter-spacing: 0.18px;
+    color: #000000DE;
+    opacity: 1;
+    font-weight: bold;
+}
+.subtitle{
+    font: normal normal normal 12px/16px Rubik;
+    letter-spacing: 0.4px;
+    color: #000000DE;
+    opacity: 1;
+    text-align: center;
+}
+.section_title{
+    text-align: left;
+    font-size: 16px;
+    letter-spacing: 0.25px;
+    color: #000000DE;
+    opacity: 1;
+    font-weight: 600;
+}
+.label{
+    margin-left: 43px;
+    margin-top: 15px;
+    font-weight: 600;
+    text-align: left;
+    letter-spacing: 0.4px;
+    font-size: 14px;
+}
+.data{
+    margin-left: 43px;
+    font-size: 15px;
+    color: #000000DE;
+}
+.filename{
+    margin-left: 43px;
+    width: 300px;
+    margin-top: 10px;
+}
+.step-form{
+    margin-left: 43px;
+    width: 98%;
+}
+.form-field{
+    width: 90%;
+}
+.reclamo-cod{
+    text-align: left;
+    font-size: 18px;
+    letter-spacing: 0.25px;
+    color: #000000DE;
+    opacity: 1;
+    font-weight: 600;
+    margin-left: 12px;
+}
+@media only screen and (max-width: 600px) {
+    .form{
+        margin-top: 88px;
+        border: 0.5px solid #BDBDBD;
+        border-radius: 16px 0px;
+        opacity: 1;
+        margin-left: 3%;
+        margin-right: 3%;
+        min-height: 300px;
+    }
+    .second-radiobutton{
+        margin-left: 72px;
+    }
+}
+@media all and (min-width: 600px) {
+    .form{
+        margin-top: 88px;
+        border: 0.5px solid #BDBDBD;
+        border-radius: 16px 0px;
+        opacity: 1;
+        margin-left: 5%;
+        margin-right: 5%;
+        min-height: 300px;
+    }
+    .second-radiobutton{
+        margin-left: 172px;
+    }
+}

@@ -1,0 +1,125 @@
+.title{
+    //width: 448px;
+    height: 24px;
+    /* UI Properties */
+    text-align: center;
+    //font: normal normal normal 24px/24px Rubik;
+    letter-spacing: 0.18px;
+    color: #000000DE;
+    opacity: 1;
+    font-weight: bold;
+}
+.subtitle{
+    font: normal normal normal 12px/16px Rubik;
+    letter-spacing: 0.4px;
+    color: #000000DE;
+    opacity: 1;
+    text-align: center;
+}
+.h2-text{
+    text-align: left;
+    //font: normal normal medium 20px/24px Rubik;
+    letter-spacing: 0.15px;
+    color: #000000DE;
+    opacity: 1;
+}
+.step-form{
+    width: 98%;
+}
+.form-field{
+    width: 100%;
+}
+.header-apoderado{
+    height: 65px;
+    background: #F8D6F7 0% 0% no-repeat padding-box;
+    border: 0.5px solid #000000;
+    border-radius: 16px 0px;
+    opacity: 1;
+    margin-top: 25px;
+}
+.header-apoderado-text{
+    text-align: left;
+    //font: normal normal medium 16px/24px Rubik;
+    font-size: 16px;
+    letter-spacing: 0.14px;
+    color: #000000DE;
+    opacity: 1;
+    margin-left: 24px;
+    font-weight:900;
+}
+.checkbox-apoderado{
+    margin-top: 35px;
+    white-space: initial;
+}
+.filename{
+    width: 230px;
+}
+.dictionary{
+    border: 0.5px solid #BDBDBD;
+    border-radius: 16px 0px;
+    opacity: 1;
+    //margin-left: 27px;
+    margin-right: 33px;
+    //height: 243px;
+    margin-top: 18px;
+}
+.dictionary_text{
+    margin-left: 23px;
+    margin-right: 10px;
+    margin-bottom: 5px;
+    text-align: justify;
+    font: normal normal normal 10px/14px Rubik;
+    letter-spacing: 0.22px;
+    color: #000000DE;
+    font-weight: 600;
+}
+.phone-text{
+    text-align: center;
+    font: normal normal normal 14px/20px Rubik;
+    letter-spacing: 0.25px;
+    color: #000000DE;
+    opacity: 1;
+    font-weight: 700;
+}
+::ng-deep .mat-checkbox-label{
+    white-space: initial !important;
+}
+.next-button{
+    color:black;
+    transform: scale(2);
+}
+@media only screen and (max-width: 600px) {
+    .form{
+        margin-top: 44px;
+        border: 0.5px solid #BDBDBD;
+        border-radius: 16px 0px;
+        opacity: 1;
+        margin-left: 3%;
+        margin-right: 3%;
+        min-height: 300px;
+    }
+    .second-radiobutton{
+        margin-left: 72px;
+    }
+}
+@media all and (min-width: 600px) {
+    .form{
+        margin-top: 44px;
+        border: 0.5px solid #BDBDBD;
+        border-radius: 16px 0px;
+        opacity: 1;
+        margin-left: 5%;
+        margin-right: 5%;
+        min-height: 300px;
+    }
+    .second-radiobutton{
+        margin-left: 172px;
+    }
+}
+.terminos{
+    color: #D41F7E;
+    cursor: pointer;
+}
+.logo-libro{
+    margin-top: 20px;
+}

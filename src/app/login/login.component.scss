@@ -1,0 +1,66 @@
+.header{
+    margin-top: 76px;
+}
+.title{
+    //width: 448px;
+    height: 24px;
+    /* UI Properties */
+    text-align: center;
+    //font: normal normal normal 24px/24px Rubik;
+    letter-spacing: 0.18px;
+    color: #000000DE;
+    opacity: 1;
+    font-weight: bold;
+}
+.subtitle{
+    font: normal normal normal 12px/16px Rubik;
+    letter-spacing: 0.4px;
+    color: #000000DE;
+    opacity: 1;
+    text-align: center;
+}
+.login-screen{
+    margin-top: 45px;
+    border: 0.5px solid #BDBDBD;
+    border-radius: 16px 0px;
+    opacity: 1;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+.form-field{
+    width: 70%;
+}
+.login-image{
+    margin-top: 50px;
+    max-width: 80%;
+}
+@media only screen and (max-width: 600px) {
+    .login-form{
+        width: 100%;
+        margin-top: 36.5px;
+    }
+    .loginButton{
+        height: 56px;
+        width: 125px;
+        box-shadow: 0px 3px 6px #00000029;
+        border-radius: 8px 0px;
+        font-size: 14px;
+        margin-top: 62.5px;
+        margin-bottom: 50px;
+    }
+}
+@media all and (min-width: 600px) {
+    .login-form{
+        width: 90%;
+        margin-top: 176.5px;
+    }
+    .loginButton{
+        height: 56px;
+        width: 125px;
+        box-shadow: 0px 3px 6px #00000029;
+        border-radius: 8px 0px;
+        font-size: 14px;
+        margin-top: 62.5px;
+        margin-bottom: 182px;
+    }
+}

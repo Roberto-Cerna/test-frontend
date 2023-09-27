@@ -1,0 +1,61 @@
+<h2 mat-dialog-title>{{data.filter.name}}</h2>
+<mat-dialog-content class="mat-typography">
+    <div class="mat-dialog-content-body">
+      <br>
+      <mat-form-field style="width:100%" *ngIf="data.filter.type==idType">
+        <label for="id">Id</label>
+        <input matInput type="text" class="form-control" id="id" required [(ngModel)]="result" name="id">
+      </mat-form-field>
+      <mat-form-field style="width:100%" *ngIf="data.filter.type==nameType">
+          <input matInput type="text" class="form-control" id="name" required [(ngModel)]="result" name="activity" placeholder="Contiene la palabra:">
+      </mat-form-field>
+      <div style="width:100%" *ngIf="data.filter.type==listType">
+          <mat-form-field style="width:100%" *ngIf="data.filter.detail.length>10">
+            <input #searchInput [formControl]="searchCtrl" matInput type="text" class="form-control" id="filterList"  name="filterList" placeholder="Buscar">
+          </mat-form-field>
+          <button style="width: 100%;text-align: left;"  *ngFor="let detail of filteredOptions | async" mat-button [mat-dialog-close]="detail">{{detail.name}}</button>
+      </div>
+      <div *ngIf="data.filter.type==datesType" fxLayout="column">
+            <div>
+              <button style="width: 50%" mat-button [mat-dialog-close]="'last7days'">Ultimos 7 días</button>
+              <mat-form-field style="width: 50%" >
+                  <input matInput [matDatepicker]="picker1" required placeholder="Desde" [(ngModel)]="startDate">
+                  <mat-datepicker-toggle matPrefix [for]="picker1"></mat-datepicker-toggle>
+                  <mat-datepicker #picker1></mat-datepicker>
+                </mat-form-field>
+            </div>
+            <div>
+              <button  style="width: 50%" mat-button  [mat-dialog-close]="'lastmonth'" fxFlex="50">Ultimo mes</button>
+            </div>
+            <div>
+                <button style="width: 50%" mat-button  [mat-dialog-close]="'last3month'">Ultimos 3 meses</button>
+                <mat-form-field style="width: 50%"> 
+                    <input matInput [matDatepicker]="picker2" required placeholder="Hasta" [(ngModel)]="endDate">
+                    <mat-datepicker-toggle matPrefix [for]="picker2"></mat-datepicker-toggle>
+                    <mat-datepicker #picker2></mat-datepicker>
+                  </mat-form-field>
+            </div>
+      </div>
+      <div *ngIf="data.filter.type==rangeDateType" fxLayout="column">
+        <div>
+          <mat-form-field style="width: 50%" >
+              <input matInput [matDatepicker]="picker1" required placeholder="Desde" [(ngModel)]="startDate">
+              <mat-datepicker-toggle matPrefix [for]="picker1"></mat-datepicker-toggle>
+              <mat-datepicker #picker1></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field style="width: 50%"> 
+                <input matInput [matDatepicker]="picker2" required placeholder="Hasta" [(ngModel)]="endDate">
+                <mat-datepicker-toggle matPrefix [for]="picker2"></mat-datepicker-toggle>
+                <mat-datepicker #picker2></mat-datepicker>
+            </mat-form-field>
+        </div>
+  </div>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end" *ngIf="data.filter.type!=listType">
+    <button mat-button mat-dialog-close>Cancelar</button>
+    <button *ngIf="!isDateFilter" mat-button [mat-dialog-close]="result" cdkFocusInitial>Aplicar</button>
+    <button *ngIf="isDateFilter" mat-button [mat-dialog-close]="startDate+'|'+endDate" cdkFocusInitial>Aplicar</button>
+</mat-dialog-actions>

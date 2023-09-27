@@ -1,0 +1,139 @@
+<div fxLayout="row" fxLayout.xs="column" class="header">
+    <div fxFlex="30">
+    </div>
+    <div fxFlex="40">
+        <h1 class="title">LIBRO DE RECLAMACIONES</h1>
+        <div style="margin-top: 24px;" fxLayout="column" fxLayoutAlign="center center">
+            <span class="subtitle">CBC LOGISTICS S.A.C.</span> 
+            <span class="subtitle">R.U.C. No. 20601373875</span>
+            <span class="subtitle">AV. VÍCTOR ANDRÉS BELAUNDE NO. 332, INTERIOR 201, URBANIZACIÓN</span> 
+            <span class="subtitle">ORRANTIA (INTERIOR 2, PISO 2), SAN ISIDRO, LIMA – PERÚ</span>
+        </div>
+    </div>
+    <div fxFlex="30" fxLayoutAlign="end none" style="margin-right: 150px;">
+        <!--<img src="../../assets/logoVah.png">-->
+    </div>
+</div>
+<div class="form">
+    <div style="margin-top: 35px;margin-left: 24px;" fxLayout="row" fxLayoutAlign="none center">
+        <button mat-icon-button (click)="goList()">
+            <mat-icon>arrow_back</mat-icon>
+        </button>
+        <span class="reclamo-cod">{{reclamo.correlativo}}</span>
+      </div>
+    <div style="margin-top: 35px;margin-left: 29px;" fxLayout="column">
+        <div fxLayoutGap="20px" fxLayoutAlign="none center">
+            <img [src]="getIcon('#BDBDBD',1)">
+            <span class="section_title">Datos de la persona que presenta el reclamo</span>
+        </div>
+        <br>
+        <span class="label">N&uacute;mero de Documento</span>
+        <span class="data">{{reclamo.tipoDoc}}:{{reclamo.numeroDoc}}</span>
+        <span class="label">Nombres y Apellidos</span>
+        <span class="data">{{reclamo.nombres}} {{reclamo.apellidos}}</span>
+        <span class="label">Medio a trav&eacute;s del cual desea recibir la respuesta</span>
+        <span class="data">{{reclamo.medioRespuesta}}</span>
+        <span class="label">Correo El&eacute;ctronico</span>
+        <span class="data">{{reclamo.email}}</span>
+        <span class="label">Tel&eacute;fono</span>
+        <span class="data">{{reclamo.telefono}}</span>
+        <span class="label">Direcci&oacute;n domiciliaria</span>
+        <span class="data">{{reclamo.direccion}}</span>
+        <span class="data">{{reclamo.distrito}}-{{reclamo.provincia}}-{{reclamo.departamento}}</span>
+    
+        <span class="label">El consumidor es menor de edad?</span>
+        <span class="data">{{reclamo.apoderadoTipoDoc?'Si':'No'}}</span>
+        
+        <div *ngIf="reclamo.apoderadoTipoDoc">
+            <div fxLayout="column">
+                <span class="label">N&uacute;mero de Documento Apoderado</span>
+                <span class="data">{{reclamo.apoderadoTipoDoc}}: {{reclamo.apoderadoNumeroDoc}}</span>
+            </div>
+            <div fxLayout="column">
+                <span class="label">Nombre y Apellidos Apoderado</span>
+                <span class="data">{{reclamo.apoderadoNombres}} {{reclamo.apoderadoApellidos}}</span>
+            </div>
+        </div>
+    </div>
+    <div style="margin-top: 35px;margin-left: 29px;" fxLayout="column">
+        <div fxLayoutGap="20px" fxLayoutAlign="none center">
+            <img [src]="getIcon('#BDBDBD',2)">
+            <span class="section_title">Identificaci&oacute;n del bien contratado</span>
+        </div>
+        <br>
+        <span class="label">Bien contratado</span>
+        <span class="data">{{reclamo.tipoBien}}</span>
+        <span class="label">Monto reclamado S/</span>
+        <span class="data">{{reclamo.monto}}</span>
+        <span class="label">Marca</span>
+        <span class="data">{{reclamo.marca}}</span>
+        <span class="label">Descripci&oacute;n del producto o servicio</span>
+        <span class="data">{{reclamo.descripcion}}</span>
+    </div>
+    <div style="margin-top: 35px;margin-left: 29px;" fxLayout="column">
+        <div fxLayoutGap="20px" fxLayoutAlign="none center">
+            <img [src]="getIcon('#BDBDBD',3)">
+            <span class="section_title">Detalle de la reclamaci&oacute;n y pedido del consumidor</span>
+        </div>
+        <span class="label">Tipo de reclamaci&oacute;n</span>
+        <span class="data">{{reclamo.tipoReclamo}}</span>
+        <span class="label">Detalle del reclamo</span>
+        <span class="data">{{reclamo.detalle}}</span>
+        <span class="label">Pedido del consumidor</span>
+        <span class="data">{{reclamo.pedidoConsumidor}}</span>
+        <span class="label">Descripci&oacute;n del producto o servicio</span>
+        <span class="data">{{reclamo.descripcion}}</span>
+        <span class="label">Documento adjuntos</span>
+        <br>
+        <div fxLayout="row" fxLayoutGap="20px" *ngFor="let documento of filter(reclamo.documentos,'RECLAMO')" fxLayoutAlign="none center">
+            <br>
+            <a class="filename"  target="_blank"  href="{{urlDownloadFile+documento.id}}">{{(documento.filename.length>40)? (documento.filename | slice:0:40)+'..':(documento.filename)}}</a>
+        </div>
+    </div>
+    <div style="margin-top: 35px;margin-left: 29px;" fxLayout="column">
+        <div fxLayoutGap="20px" fxLayoutAlign="none center">
+            <img [src]="getIcon('#BDBDBD',4)">
+            <span class="section_title">Respuesta</span>
+        </div>
+        <div *ngIf="reclamo.respuesta" fxLayout="column">
+            <span class="label">Tipo de reclamaci&oacute;n</span>
+            <span class="data">{{reclamo.respuesta}}</span>
+            <span class="label">Documento adjuntos</span>
+            <br>
+            <div fxLayout="row" fxLayoutGap="20px" *ngFor="let documentoRespuesta of filter(reclamo.documentos,'RESPUESTA')" fxLayoutAlign="none center">
+                <br>
+                <a class="filename"  target="_blank"  href="{{urlDownloadFile+documentoRespuesta.id}}">{{(documentoRespuesta.filename.length>40)? (documentoRespuesta.filename | slice:0:40)+'..':(documentoRespuesta.filename)}}</a>
+            </div>
+        </div>
+        <form [formGroup]="respuestaFormGroup" (ngSubmit) = "save()" class="step-form" *ngIf="!reclamo.respuesta">
+            <mat-form-field appearance="standard" class="form-field" style="margin-top: 26px;">
+                <mat-label>Explica tu respuesta</mat-label>
+                <textarea rows="2" matInput formControlName="respuesta" placeholder="Detalle del reclamo" maxlength="2000" required></textarea>
+                <mat-hint align="end">{{respuestaFormGroup.value.respuesta?respuestaFormGroup.value.respuesta.length:0}} / 2000</mat-hint>
+            </mat-form-field>
+            <div class="form-field" fxLayout="column" style="margin-top: 75.44px;">
+                <span>Opcional: adjuntar documentación adicional.</span>
+                <span>Puedo subir más de un archivo.</span>
+                <span>Máximo 15MB por archivo.</span>
+                <span>Formatos permitidos: pdf, jpg, mp4, mp3.</span>
+            </div>
+            <div fxLayout="column" style="margin-top: 26px;margin-bottom: 28px;">
+                <button type="button" mat-stroked-button style="width: 250px;border-radius: 15px 0px 15px 0px;" (click)="imgFileInput.click()"><mat-icon>attach_file</mat-icon>ADJUNTAR DOCUMENTO</button>
+                <input hidden type="file" #imgFileInput (change)="addFile($event)" accept="application/pdf,image/*,audio/*,video/*"/> 
+            </div>
+            <div fxLayout="row" fxLayoutGap="20px" *ngFor="let file of files;let sequence=index" fxLayoutAlign="none center">
+                <br>
+                <a class="filename">{{(file.name.length>40)? (file.name | slice:0:40)+'..':(file.name)}}</a>
+                <button mat-icon-button (click)="deleteFile(file,sequence)">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </div>
+            <div style="margin-top:96px;" fxLayoutAlign="end none">
+                <button [disabled] ="!respuestaFormGroup.valid" mat-raised-button type="submit" color="primary" style="margin-right: 56px;">Finalizar</button>
+            </div>
+        </form>
+    </div>
+    <br>
+    <br>
+</div>
+<div style="height: 50px;"></div>

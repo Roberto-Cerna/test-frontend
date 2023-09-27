@@ -1,0 +1,27 @@
+<h2 mat-dialog-title></h2>
+<mat-dialog-content class="mat-typography dialog">
+    <div id="exportable">
+        <div fxLayout="column" fxLayoutAlign="center center" class="company">
+            <h1 class="title">LIBRO DE RECLAMACIONES</h1>
+            <div style="margin-top: 24px;" fxLayout="column" fxLayoutAlign="center center">
+                <span class="subtitle">CBC LOGISTICS S.A.C.</span> 
+                <span class="subtitle">R.U.C. No. 20601373875</span>
+                <span class="subtitle">AV. VÍCTOR ANDRÉS BELAUNDE NO. 332, INTERIOR 201, URBANIZACIÓN</span> 
+                <span class="subtitle">ORRANTIA (INTERIOR 2, PISO 2), SAN ISIDRO, LIMA – PERÚ</span>
+            </div>
+        </div>
+        <div fxLayout="column" fxLayoutAlign="center center" class="detalle" fxLayoutGap="15px">
+            <span>Tu reclamación se ha generado exitosamente para el establecimiento "Portal web VAH". </span>
+            <span>Hoja de Reclamación Virtual No.: {{response.correlativo}}</span>
+            <span>Fecha del reclamo o queja: {{now | date: 'dd/MM/yyyy'}} </span>
+            <span>Tu reclamación será respondida en un plazo no mayor a quince (15) días hábiles improrrogables al correo electrónico {{email}} </span>
+            <span>La formulación del reclamo no impide acudir a otras vías de solución de controversias ni es requisito previo para interponer una denuncia ante el INDECOPI.</span>
+        </div>
+    </div>
+    <div fxLayout="column" fxLayoutAlign="center center" class="detalle" fxLayoutGap="25px">
+        <button type="button" mat-stroked-button style="width: 250px;border-radius: 15px 0px 15px 0px;" (click)="imprimir()"><mat-icon>print</mat-icon>Imprimir</button>
+        <button mat-button mat-dialog-close>Cerrar ventana</button>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+</mat-dialog-actions>
